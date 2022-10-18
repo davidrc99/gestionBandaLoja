@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Buscador de Partituras{% endblock %}
+
+{% block content %}
+<h3>Buscador de Partituras</h3>
+<form>
+    <div class="row p-2">
+      <div class="col-2">
+        <label for="tipoPartitura">Tipo</label>
+        <select id="tipoPartitura"class="form-control dropdown-toggle" data-toggle="dropdown">
+            <option>Marcha</option>
+            <option>Obra</option>
+            <option>Otra</option>
+            <option>Pasodoble</option>
+        </select>
+      </div>
+      <div class="col-8">
+        <label for="nombrePartitura">Nombre de la partitura</label>
+        <input type="text" id="nombrePartitura" class="form-control">
+      </div>
+      <div class="col-2">
+        <label for="vozPartitura">Tipo</label>
+        <select id="vozPartitura" class="form-control dropdown-toggle" data-toggle="dropdown">
+            <option selected>Trompeta II</option>
+            <option>Clarinete I</option>
+            <option>Caja</option>
+            <option>Dirección</option>
+        </select>
+      </div>
+    </div>
+    <div style="display: flex;justify-content: center;" class="row p-2 mx-auto">
+        <button style="width:100px;" class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+  </form>
+{% endblock %}
