@@ -1,9 +1,9 @@
 #Rutas de los directorios
-DIR_RAIZ = 'C:\\Users\\DavidRománCastellano\\Documents\\gestionBandaLoja\\data'   
-DIR_MARCHAS = 'C:\\Users\\DavidRománCastellano\\Documents\\gestionBandaLoja\\data\\Marchas'
-DIR_PASODOBLES = 'C:\\Users\\DavidRománCastellano\\Documents\\gestionBandaLoja\\Pasodobles'
-DIR_OTRAS = 'C:\\Users\\DavidRománCastellano\\Documents\\gestionBandaLoja\\data\\Otras'
-DIR_OBRAS = 'C:\\Users\\DavidRománCastellano\\Documents\\gestionBandaLoja\\data\\Obras'
+DIR_RAIZ = '/home/davidrc/Documentos/gestionBandaLoja/data'   
+DIR_MARCHAS = '/home/davidrc/Documentos/gestionBandaLoja/data/Marchas'
+DIR_PASODOBLES = '/home/davidrc/Documentos/gestionBandaLoja/data/Pasodobles'
+DIR_OTRAS = '/home/davidrc/Documentos/gestionBandaLoja/data/data/Otras'
+DIR_OBRAS = '/home/davidrc/Documentos/gestionBandaLoja/data/Obras'
 
 DIR_MAP = [
     {'name':'marchas','dir':DIR_MARCHAS},

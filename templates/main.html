@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <!-- INICIO - Mensaje de alerta -->
+    {% if mensaje.value != ''%}
+        <div class="alert alert-{{mensaje.type}} alert-dismissible">
+            {{mensaje.value}}
+            <a href="#" class="close btn-close" data-dismiss="alert" aria-label="close"></a>
+        </div>
+    {% endif %}
+    <!-- FIN - Mensaje de alerta -->
+
+    <!-- IF - Partitura no existe (no tiene datos) -->
+
+        <!-- INICIO - FORMULARIO BUSCAR PARTITURA -->
+
+        <!-- FIN - FORMULARIO BUSCAR PARTITURA -->
+    
+    <!-- ELSE -->
+
+        <!-- INICIO - FORMULARIO AÑADIR VOZ -->
+
+        <!-- FIN - FORMULARIO AÑADIR VOZ -->
+    
+    <!-- ENDIF -->
+
+    <!-- IF - COLA tiene datos -->
+
+        <!-- INICIO - COLA -->
+
+        <!-- FIN - COLA -->
+    
+    <!-- ENDIF -->   
+
+
+{% endblock %}

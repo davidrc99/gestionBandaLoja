@@ -15,8 +15,7 @@ def searchDirectory(tipo):
         list_dir.append(Path(DIR_OBRAS))             
     elif tipo == 'otra' or tipo == 'otras':         
         list_dir.append(Path(DIR_OTRAS))             
-    else:             
-        print('ERROR - NO EXISTE ESE TIPO DE PARTITURA')         
+   
     return list_dir
 
 #Dado el tipo de partitura y su nombre, buscar su ruta en los directorios
@@ -28,11 +27,7 @@ def searchSheet(list_dir, nombre):
         directorio : Path
         for file in directorio.iterdir():
             if os.path.exists(file) and not(file.is_file()) and file.stem == nombre:
-                print('OK- SE ENCONTRÓ LA PARTITURA ' + nombre)
                 rutaPartitura = file
-                break
-            else:
-                print('ERROR - NO SE ENCONTRÓ LA PARTITURA')
                 break
 
     return  rutaPartitura
@@ -60,19 +55,33 @@ def toCamelCase(name):
 
 #funcion para buscar el nombre dentro de la carpeta
 
+def getVoicesOptions(type, name):
+    list_dir = searchDirectory(toCamelCase(type))
+    list_voices = []
+    if(len(list_dir) == 1):
+        route = searchSheet(list_dir,toCamelCase(name))
+        if(route):
+            list_voices = getVoicesSheets(route)
+    return list_voices
+
+def getVoice(type, name, voice):
+    listaVoces = getVoicesOptions(type,name)
+    if(listaVoces):
+        for voz in listaVoces:
+            if(voz['nombre'] == voice):
+                return voz
+    
 
 if __name__ == "__main__":
-    print('Introduzca el tipo de partitura:')
-    tipo = input()
-    list_dir = searchDirectory(toCamelCase(tipo))
-    if(len(list_dir) == 1):
-        print('Introduzca un nomnbre de marcha:')
-        nombre = input()
-        rutaPartitura = searchSheet(list_dir,toCamelCase(nombre))
-        if(rutaPartitura):
-            print('Introduzca la voz que desa buscar:')
-            listaVoces = getVoicesSheets(rutaPartitura)
-            for voz in listaVoces:
-                print(voz['nombre'])
-            
+    
+    listaVoces = getVoicesOptions('marcha','La estrella erwerwer')
+
+    if(listaVoces):
+        for voz in listaVoces:
+            print(voz['nombre'] + ':'+voz['path'])
+    else:
+        print('No encontrado')
+
+    voz = getVoice('marcha','La estrella sublime','trompeta1')
+    print(voz)
 
