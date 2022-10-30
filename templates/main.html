@@ -11,17 +11,46 @@
     <!-- FIN - Mensaje de alerta -->
 
     <!-- IF - Partitura no existe (no tiene datos) -->
-
+    {% if partitura.name == ''%}
         <!-- INICIO - FORMULARIO BUSCAR PARTITURA -->
-
+        <form action="{{ url_for('handle_data') }}" method="post">
+            <div class="row p-2">
+              <div class="col-2">
+                <label for="tipoPartitura">Tipo</label>
+                <select id="tipoPartitura"class="form-control dropdown-toggle" data-toggle="dropdown">
+                    <option>Marcha</option>
+                    <option>Obra</option>
+                    <option>Otra</option>
+                    <option>Pasodoble</option>
+                </select>
+              </div>
+              <div class="col-8">
+                <label for="nombrePartitura">Nombre de la partitura</label>
+                <input type="text" id="nombrePartitura" class="form-control">
+              </div>
+              <div class="col-2">
+                <label for="vozPartitura">Tipo</label>
+                <select id="vozPartitura" class="form-control dropdown-toggle" data-toggle="dropdown">
+                    <option selected>Trompeta II</option>
+                    <option>Clarinete I</option>
+                    <option>Caja</option>
+                    <option>Dirección</option>
+                </select>
+              </div>
+            </div>
+            <div style="display: flex;justify-content: center;" class="row p-2 mx-auto">
+                <button style="width:100px;" class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+          </form>
         <!-- FIN - FORMULARIO BUSCAR PARTITURA -->
     
     <!-- ELSE -->
-
+    {% else %}    
         <!-- INICIO - FORMULARIO AÑADIR VOZ -->
 
         <!-- FIN - FORMULARIO AÑADIR VOZ -->
     
+    {% endif %}
     <!-- ENDIF -->
 
     <!-- IF - COLA tiene datos -->

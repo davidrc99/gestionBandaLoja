@@ -10,11 +10,27 @@ mensaje = {
     'type' : ''
 }
 
+partitura = {
+    'type' : '',
+    'name' : '',
+    'voice' : ''
+}
+
+def setNotficication(value,type):
+    mensaje['value'] = value
+    mensaje['type'] = type
+
 @app.route('/')
 def main():
     # mensaje['value'] = 'Este mensaje es de prueba'
     # mensaje['type'] = 'danger'
-    return render_template('main.html',mensaje=mensaje)
+    return render_template('main.html',mensaje=mensaje,partitura=partitura)
+
+@app.route('/handle_data', methods =['POST'])
+def handle_data():
+    if request.method == 'POST':
+        setNotficication('Submit enviado','success')
+    return render_template('main.html',mensaje=mensaje,partitura=partitura)
 # @app.route('/')
 # def main():
 #     mensaje = ''
