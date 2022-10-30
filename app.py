@@ -13,7 +13,7 @@ mensaje = {
 partitura = {
     'type' : '',
     'name' : '',
-    'voice' : ''
+    'listaVoces' : ''
 }
 
 def setNotficication(value,type):
@@ -22,14 +22,21 @@ def setNotficication(value,type):
 
 @app.route('/')
 def main():
-    # mensaje['value'] = 'Este mensaje es de prueba'
-    # mensaje['type'] = 'danger'
+    mensaje = {'value' : '','type' : ''}
+    partitura = {'type' : '','name' : '','listaVoces' : ''}
     return render_template('main.html',mensaje=mensaje,partitura=partitura)
 
 @app.route('/handle_data', methods =['POST'])
 def handle_data():
     if request.method == 'POST':
-        setNotficication('Submit enviado','success')
+        listaVoces = getVoicesOptions(request.form['tipoPartitura'],request.form['nombrePartitura'])
+        if(listaVoces):
+            setNotficication('Partitura encontrada con éxito. Seleccione la voz que desea añadir','success')
+            partitura['type'] = request.form['tipoPartitura']
+            partitura['name'] = request.form['nombrePartitura']
+            partitura['listaVoces'] = listaVoces
+        else:
+            setNotficication('No se pudo encontrar esa partitura','danger')
     return render_template('main.html',mensaje=mensaje,partitura=partitura)
 # @app.route('/')
 # def main():
