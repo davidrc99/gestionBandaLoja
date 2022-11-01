@@ -1,17 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <!-- INICIO - Mensaje de alerta -->
+    {% if mensaje.value != ''%}
+      <div class="alert alert-{{mensaje.type}} alert-dismissible my-4">
+        {{mensaje.value}}
+        <a href="#" class="close btn-close" data-dismiss="alert" aria-label="close"></a>
+      </div>
+    {% endif %}
+    <!-- FIN - Mensaje de alerta -->
     <!-- IF - Partitura no existe (no tiene datos) -->
     {% if partitura.name == ''%}
         <!-- INICIO - FORMULARIO BUSCAR PARTITURA -->
-        <form  action="{{ url_for('handle_data') }}" method="post">
+        <form  action="{{ url_for('searchSheet') }}" method="post">
           <div class="row">
             <div class="col-9 ">
               <label for="nombrePartitura">Nombre de la partitura</label>
               <input type="text" name="nombrePartitura" class="form-control">
             </div>
             <div class="col-3">
-              <button style="width:100px;" class="btn btn-primary my-4" type="submit">Buscar</button>
+              <button style="width:120px;" class="btn btn-primary my-4" type="submit"><i class="bi bi-search mx-2"></i>Buscar</button>
             </div>
           </div>
             <div class="row">
@@ -52,10 +60,11 @@
     <!-- ELSE -->
     {% else %}    
         <!-- INICIO - FORMULARIO AÑADIR VOZ -->
-        <form>
+        <form action="{{ url_for('addVoice') }}" method="post">
           <div class="form-group">
             <label for="nombrePartitura">Nombre Partitura</label>
             <input type="text" class="form-control" name="nombrePartitura" placeholder="{{partitura.name}}" disabled>
+            <input type="text" class="form-control" name="tipoPartitura" placeholder="{{partitura.type}}" hidden>
           </div>
           <div class="form-group my-3">
             <label for="vozPartitura">Voces encontradas: </label>
@@ -65,9 +74,9 @@
               {% endfor%}
             </select>
           </div>
-          <div class="mx-auto">
-            <button style="width:150px;" class="btn btn-success my-4" type="submit">Añadir voz</button>
-            <button style="width:200px;" class="btn btn-secondary my-4 mx-3" type="submit">Buscar otra partitura</button>
+          <div class="mx-auto" style="vertical-align: middle;text-align: center;">
+            <button style="width:150px;" class="btn btn-success my-4" type="submit"><i class="bi bi-plus mx-2"></i>Añadir voz</button>
+            <a style="width:220px;" href = "{{url_for('main')}}" class="btn btn-secondary my-4 mx-3"><i class="bi bi-search mx-2"></i>Buscar otra partitura</a>
           </div>
         </form>
         <!-- FIN - FORMULARIO AÑADIR VOZ -->
@@ -75,21 +84,12 @@
     {% endif %}
     <!-- ENDIF -->
 
-    <!-- INICIO - Mensaje de alerta -->
-        {% if mensaje.value != ''%}
-        <div class="alert alert-{{mensaje.type}} alert-dismissible my-4">
-            {{mensaje.value}}
-            <a href="#" class="close btn-close" data-dismiss="alert" aria-label="close"></a>
-        </div>
-    {% endif %}
-    <!-- FIN - Mensaje de alerta -->
-
     <!-- IF - COLA tiene datos -->
-
+      {% if cola|length > 0 %}
         <!-- INICIO - COLA -->
-
+        hay cosas en la cola
         <!-- FIN - COLA -->
-    
+    {% endif %}
     <!-- ENDIF -->   
 
 
